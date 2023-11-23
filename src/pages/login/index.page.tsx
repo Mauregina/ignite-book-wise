@@ -2,10 +2,10 @@ import { Button, Heading, Text } from '@tucupi-ui/react'
 import { GithubLogo, GoogleLogo, RocketLaunch } from 'phosphor-react'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { Container, ImageContainer, Hero, ConnectContainer } from './styles'
 
-import logo from '../../assets/logo.png'
-import { useRouter } from 'next/navigation'
+import logo from '../../assets/logo-login-section.png'
 
 export default function Login() {
   const router = useRouter()
