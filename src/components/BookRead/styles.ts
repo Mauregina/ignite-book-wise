@@ -9,6 +9,7 @@ export const Container = styled('div', {
 export const BookBox = styled(Box, {
   display: 'flex',
   gap: '$5',
+  background: '$purple900',
 })
 
 export const Content = styled('div', {

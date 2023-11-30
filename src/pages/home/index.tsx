@@ -1,5 +1,7 @@
 import { NextPageWithLayout } from '../_app.page'
 import { ReactElement } from 'react'
+import { useSession } from 'next-auth/react'
+
 import { House } from 'phosphor-react'
 import { Heading } from '@tucupi-ui/react'
 
@@ -11,6 +13,8 @@ import BookReviewed from '@/components/BookReviewed'
 import BookPopular from '@/components/BookPopular'
 
 const Home: NextPageWithLayout = () => {
+  const { data: session } = useSession()
+  const isLogged = session
   return (
     <Container>
       <Title>
@@ -19,7 +23,8 @@ const Home: NextPageWithLayout = () => {
       </Title>
       <Content>
         <Latest>
-          <BookRead />
+          {isLogged && <BookRead />}
+
           <BookReviewed />
         </Latest>
         <BookPopular />

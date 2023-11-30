@@ -114,6 +114,42 @@ export default function BookReviewed() {
             </BookInfo>
           </BookContent>
         </ReviewBox>
+        <ReviewBox>
+          <Header>
+            <Reviewer>
+              <Avatar />
+              <OtherInfoReviewer>
+                <Text as="strong">Brandon Botosh</Text>
+                <Text as="span" size="sm">
+                  Ontem
+                </Text>
+              </OtherInfoReviewer>
+            </Reviewer>
+            <Score>
+              <Star weight="fill" />
+              <Star weight="fill" />
+              <Star />
+              <Star />
+              <Star />
+            </Score>
+          </Header>
+          <BookContent>
+            <Image src={Book2} height={170} alt="" />
+            <BookInfo>
+              <BookName>
+                <Text as="strong">O Hobbit</Text>
+                <Text as="span" size="sm">
+                  J.R.R. Tolkien
+                </Text>
+              </BookName>
+
+              <ReviewDescription
+                description="Não tenho coragem de dar menos do que 5/5 pra esse livro. A complexidade desta história criada por Tolkien é de se admirar e dá um nó na minha cabeça só de pensar. Mas eu esperava uma coisa...diferente. Se você gosta de uma leitura dramática e rápido leia não que não vai rolar. Eu torcendo pra ter um drama no decorrer da história e nada. É uma leitura bem lenta também e eu me acostumei à essa escrita logo no início. Tem mais à ver com O Hobbit,o primeiro filme e resto da trilogia nem sei o que aconteceu. O que houve com aqueles filmes eu não sei. Três filmes feitos de um livro um menor que 300 páginas. Doideira.
+Grandes expectativas para O Senhor Dos Anéis."
+              />
+            </BookInfo>
+          </BookContent>
+        </ReviewBox>
       </Content>
     </Container>
   )
