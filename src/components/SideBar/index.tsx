@@ -1,13 +1,14 @@
+import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { Binoculars, House, SignIn, SignOut, User } from 'phosphor-react'
 
-import { Avatar, Button, Text } from '@tucupi-ui/react'
+import { Avatar, Text } from '@tucupi-ui/react'
 import { Container, NavBar, Footer } from './styles'
 
 import logo from '../../assets/logo.svg'
-import { Binoculars, House, SignIn, SignOut, User } from 'phosphor-react'
+
 import Link from './Link'
-import { signOut, useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
 
 export default function SideBar() {
   const { data: session, status } = useSession()
