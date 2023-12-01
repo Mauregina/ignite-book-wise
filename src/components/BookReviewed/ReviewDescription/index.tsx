@@ -19,7 +19,7 @@ export default function ReviewDescription({
     return description.substring(0, MAX_SIZE) + '...'
   }, [description])
 
-  function onHandleClick() {
+  function handleClick() {
     setIsExpanded((status) => !status)
   }
 
@@ -28,7 +28,7 @@ export default function ReviewDescription({
       {isGreaterThanMaxSize ? (
         <Text size="sm">
           {isExpanded ? description : truncateDescription}{' '}
-          <ExpandButton onClick={onHandleClick}>
+          <ExpandButton onClick={handleClick}>
             mostrar {isExpanded ? 'menos' : 'mais'}
           </ExpandButton>
         </Text>
