@@ -1,5 +1,4 @@
 import { Text } from '@tucupi-ui/react'
-import { Star } from 'phosphor-react'
 
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
@@ -13,13 +12,13 @@ import {
   Container,
   Content,
   Header,
-  Score,
   Descripton,
 } from './styles'
 
 import { api } from '@/lib/axios'
 
 import { formatDate, getTimeDistanceToNow } from '@/utils/date'
+import Score from '../Score'
 
 interface LastBookRead {
   name: string
@@ -76,13 +75,7 @@ export default function BookRead() {
               >
                 {getTimeDistanceToNow(data.reviewedAtDate)}
               </Text>
-              <Score>
-                <Star weight="fill" />
-                <Star weight="fill" />
-                <Star weight="fill" />
-                <Star weight="fill" />
-                <Star weight="fill" />
-              </Score>
+              <Score score={data.score} />
             </Header>
 
             <BookName>

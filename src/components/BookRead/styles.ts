@@ -48,8 +48,3 @@ export const Descripton = styled(Text, {
   WebkitBoxOrient: 'vertical',
   WebkitLineClamp: 2,
 })
-
-export const Score = styled('div', {
-  display: 'flex',
-  gap: '$1',
-})
