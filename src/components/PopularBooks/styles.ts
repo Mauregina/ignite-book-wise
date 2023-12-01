@@ -32,8 +32,3 @@ export const BookName = styled('div', {
     color: '$gray400',
   },
 })
-
-export const Score = styled('div', {
-  display: 'flex',
-  gap: '$1',
-})

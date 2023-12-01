@@ -17,6 +17,7 @@ export const Content = styled('div', {
   flexDirection: 'column',
   justifyContent: 'flex-start',
   gap: '$5',
+  flexGrow: 1,
 
   '> p': {
     color: '$gray300',

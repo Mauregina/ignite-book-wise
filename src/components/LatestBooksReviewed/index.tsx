@@ -4,7 +4,7 @@ import { api } from '@/lib/axios'
 
 import { Avatar, Text } from '@tucupi-ui/react'
 
-import { getTimeDistanceToNow } from '@/utils/date'
+import { formatDate, getTimeDistanceToNow } from '@/utils/date'
 import ReviewDescription from './ReviewDescription'
 import Score from '../Score'
 
@@ -87,7 +87,12 @@ export function LatestBooksReviewed() {
                   <Avatar src={review.user.image} imageSize="md" />
                   <OtherInfoReviewer>
                     <Text as="strong">{review.user.name}</Text>
-                    <Text as="time" size="sm">
+                    <Text
+                      as="time"
+                      size="sm"
+                      title={formatDate(review.reviewedAtDate)}
+                      dateTime={review.reviewedAtDate}
+                    >
                       {getTimeDistanceToNow(review.reviewedAtDate)}
                     </Text>
                   </OtherInfoReviewer>

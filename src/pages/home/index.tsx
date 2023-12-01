@@ -10,7 +10,7 @@ import { Container, Title, Content, Latest } from './styles'
 
 import { LastBookRead } from '@/components/LastBookRead'
 import { LatestBooksReviewed } from '@/components/LatestBooksReviewed'
-import BookPopular from '@/components/BookPopular'
+import { PopularBooks } from '@/components/PopularBooks'
 
 const Home: NextPageWithLayout = () => {
   const { data: session } = useSession()
@@ -27,7 +27,7 @@ const Home: NextPageWithLayout = () => {
 
           <LatestBooksReviewed />
         </Latest>
-        <BookPopular />
+        <PopularBooks />
       </Content>
     </Container>
   )
