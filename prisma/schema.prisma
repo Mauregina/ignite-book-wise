@@ -59,6 +59,7 @@ model Book {
   author      String
   description String
   pages       Int
+  image_url   String
 
   BookCategory BookCategory[]
   Review       Review[]

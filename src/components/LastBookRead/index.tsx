@@ -1,10 +1,12 @@
-import { Text } from '@tucupi-ui/react'
-
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { useCallback, useEffect, useState } from 'react'
+import { api } from '@/lib/axios'
 
-import Book1 from '../../assets/book1.png'
+import { Text } from '@tucupi-ui/react'
+
+import { formatDate, getTimeDistanceToNow } from '@/utils/date'
+import Score from '../Score'
 
 import {
   BookBox,
@@ -15,26 +17,32 @@ import {
   Descripton,
 } from './styles'
 
-import { api } from '@/lib/axios'
+interface User {
+  id: string
+  image: string
+}
 
-import { formatDate, getTimeDistanceToNow } from '@/utils/date'
-import Score from '../Score'
+interface Book {
+  id: string
+  title: string
+  author: string
+  imageUrl: string
+}
 
 interface LastBookRead {
-  name: string
-  author: string
-  review: string
+  description: string
   score: number
-  reviewed_at: string
   reviewedAtDate: Date
+  book: Book
+  user: User
 }
 
 interface AuthUser {
   id: string
 }
 
-export default function BookRead() {
-  const [data, setData] = useState<LastBookRead | undefined>(undefined)
+export function LastBookRead() {
+  const [review, setReview] = useState<LastBookRead | undefined>(undefined)
 
   const session = useSession()
   const userId = (session?.data?.user as AuthUser).id
@@ -45,8 +53,11 @@ export default function BookRead() {
 
       if (response.status === 200) {
         const lastRead = response.data.lastRead
-        const reviewedAtDate = new Date(lastRead.reviewed_at)
-        setData({ ...lastRead, reviewedAtDate })
+        const reviewedAtDate = new Date(lastRead.createdAt)
+        setReview({
+          ...lastRead,
+          reviewedAtDate,
+        })
       }
     } catch (error) {
       console.error('Error ', error)
@@ -62,30 +73,35 @@ export default function BookRead() {
       <Text size={'sm'} as="strong">
         Sua última leitura
       </Text>
-      {data ? (
+      {review ? (
         <BookBox>
-          <Image src={Book1} height={170} alt="" />
+          <Image
+            src={review.book.imageUrl}
+            height={152}
+            width={108}
+            alt="Review"
+          />
           <Content>
             <Header>
               <Text
                 as="time"
                 size="sm"
-                title={formatDate(data.reviewedAtDate)}
-                dateTime={data.reviewedAtDate}
+                title={formatDate(review.reviewedAtDate)}
+                dateTime={review.reviewedAtDate}
               >
-                {getTimeDistanceToNow(data.reviewedAtDate)}
+                {getTimeDistanceToNow(review.reviewedAtDate)}
               </Text>
-              <Score score={data.score} />
+              <Score score={review.score} />
             </Header>
 
             <BookName>
-              <Text as="strong">{data.name}</Text>
+              <Text as="strong">{review.book.title}</Text>
               <Text as="span" size="sm">
-                {data.author}
+                {review.book.author}
               </Text>
             </BookName>
 
-            <Descripton size="sm">{data.review}</Descripton>
+            <Descripton size="sm">{review.description}</Descripton>
           </Content>
         </BookBox>
       ) : (

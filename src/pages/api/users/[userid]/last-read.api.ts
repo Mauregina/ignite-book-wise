@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { prisma } from '@/lib/prisma'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -28,28 +29,27 @@ export default async function handle(
     orderBy: {
       created_at: 'desc',
     },
+    include: {
+      book: true,
+      user: true,
+    },
   })
 
   if (!review) {
     return res.json({ lastread: {} })
   }
 
-  const book = await prisma.book.findUnique({
-    where: {
-      id: review.book_id,
-    },
-  })
-
-  if (!book) {
-    return res.status(400).json({ message: 'Book does not exist.' })
-  }
-
   const lastRead = {
-    name: book.title,
-    author: book.author,
-    review: review.description,
-    score: review.score,
-    reviewed_at: review.created_at,
+    ...review,
+    createdAt: review.created_at,
+    book: {
+      ...review.book,
+      imageUrl: review.book.image_url,
+    },
+    user: {
+      ...review.user,
+      imageUrl: review.user.image,
+    },
   }
 
   res.status(200).json({ lastRead })

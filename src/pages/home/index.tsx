@@ -8,8 +8,8 @@ import { Heading } from '@tucupi-ui/react'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import { Container, Title, Content, Latest } from './styles'
 
-import BookRead from '@/components/BookRead'
-import BookReviewed from '@/components/BookReviewed'
+import { LastBookRead } from '@/components/LastBookRead'
+import { LatestBooksReviewed } from '@/components/LatestBooksReviewed'
 import BookPopular from '@/components/BookPopular'
 
 const Home: NextPageWithLayout = () => {
@@ -23,9 +23,9 @@ const Home: NextPageWithLayout = () => {
       </Title>
       <Content>
         <Latest>
-          {isLogged && <BookRead />}
+          {isLogged && <LastBookRead />}
 
-          <BookReviewed />
+          <LatestBooksReviewed />
         </Latest>
         <BookPopular />
       </Content>

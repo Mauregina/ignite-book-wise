@@ -1,4 +1,4 @@
-import { Box, Text, styled } from '@tucupi-ui/react'
+import { Box, styled } from '@tucupi-ui/react'
 
 export const Container = styled('div', {
   display: 'flex',
@@ -37,7 +37,7 @@ export const OtherInfoReviewer = styled('div', {
     color: '$gray200',
   },
 
-  '> span': {
+  '> time': {
     color: '$gray400',
   },
 })
@@ -60,9 +60,4 @@ export const BookName = styled('div', {
   '> span': {
     color: '$gray400',
   },
-})
-
-export const Score = styled('div', {
-  display: 'flex',
-  gap: '$1',
 })
