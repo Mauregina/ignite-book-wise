@@ -5,6 +5,7 @@ import { Container, Content, Title } from './styles'
 import { User } from 'phosphor-react'
 import { Heading } from '@tucupi-ui/react'
 import { ProfileInfo } from '@/components/ProfileInfo'
+import { LatestBooksReviewedByUser } from '@/components/LatestBooksReviewedByUser'
 
 const Profile: NextPageWithLayout = () => {
   return (
@@ -14,7 +15,7 @@ const Profile: NextPageWithLayout = () => {
         <Heading>Perfil</Heading>
       </Title>
       <Content>
-        <div>Coluna 1</div>
+        <LatestBooksReviewedByUser />
         <ProfileInfo />
       </Content>
     </Container>

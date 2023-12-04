@@ -38,8 +38,6 @@ export function ProfileInfo() {
     try {
       const response = await api.get(`users/${userId}/report`)
 
-      console.log(response)
-
       if (response.status === 200) {
         const data = response.data.report
         setReport(data)
