@@ -1,4 +1,4 @@
-import { Box, styled } from '@tucupi-ui/react'
+import { styled } from '@tucupi-ui/react'
 
 export const Container = styled('section', {
   display: 'flex',
@@ -9,7 +9,7 @@ export const Container = styled('section', {
 export const Title = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '$1',
+  gap: '$2',
 })
 
 export const Content = styled('div', {

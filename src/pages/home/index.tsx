@@ -18,7 +18,7 @@ const Home: NextPageWithLayout = () => {
   return (
     <Container>
       <Title>
-        <House size={22} color="#8661C1" />
+        <House size={26} color="#8661C1" />
         <Heading>Início</Heading>
       </Title>
       <Content>
