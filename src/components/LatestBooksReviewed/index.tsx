@@ -79,7 +79,7 @@ export function LatestBooksReviewed() {
         Avaliações mais recentes
       </Text>
       <Content>
-        {reviews ? (
+        {reviews.length > 0 ? (
           reviews.map((review) => (
             <ReviewBox key={review.id}>
               <Header>

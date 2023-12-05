@@ -91,7 +91,7 @@ export function LatestBooksReviewedByUser() {
       />
 
       <Content>
-        {filteredReviews ? (
+        {filteredReviews.length > 0 ? (
           filteredReviews.map((review) => (
             <ReviewBox key={review.id}>
               <Text
