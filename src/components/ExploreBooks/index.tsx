@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { api } from '@/lib/axios'
 
-import { Button, Text } from '@tucupi-ui/react'
+import { Button, Text, TextInput } from '@tucupi-ui/react'
+
+import Score from '../Score'
 
 import {
   Container,
@@ -12,7 +14,6 @@ import {
   BookInfo,
   BookName,
 } from './styles'
-import Score from '../Score'
 
 interface Category {
   id: string
@@ -33,6 +34,7 @@ export function ExploreBooks() {
   const [books, setBooks] = useState<Book[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [categorySelected, setCategorySelected] = useState('')
+  const [filter, setFilter] = useState('')
 
   const loadCategories = useCallback(async () => {
     const response = await api.get('categories')
@@ -68,8 +70,26 @@ export function ExploreBooks() {
     setCategorySelected(category)
   }
 
+  function handleChangeFilter(event: ChangeEvent<HTMLInputElement>) {
+    setFilter(event.target.value)
+  }
+
+  const filteredBooks =
+    filter === ''
+      ? books
+      : books.filter(
+          (item) =>
+            item.title.toLowerCase().includes(filter.toLowerCase()) ||
+            item.author.toLowerCase().includes(filter.toLowerCase()),
+        )
+
   return (
     <Container>
+      <TextInput
+        placeholder="Buscar livro ou autor"
+        value={filter}
+        onChange={handleChangeFilter}
+      />
       <ButtonContent>
         <Button autoFocus onClick={() => handleCategoryClick('')}>
           Tudo
@@ -85,8 +105,8 @@ export function ExploreBooks() {
           ))}
       </ButtonContent>
       <BooksContent>
-        {books.length > 0 ? (
-          books.map((book) => (
+        {filteredBooks.length > 0 ? (
+          filteredBooks.map((book) => (
             <ReviewBox key={book.id}>
               <Image src={book.imageUrl} height={152} width={108} alt="" />
               <BookInfo>

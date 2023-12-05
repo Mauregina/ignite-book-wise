@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
 
-import { Box, Text, TextInput } from '@tucupi-ui/react'
+import { Text, TextInput } from '@tucupi-ui/react'
 
 import { formatDate, getTimeDistanceToNow } from '@/utils/date'
 import ReviewDescription from './ReviewDescription'
