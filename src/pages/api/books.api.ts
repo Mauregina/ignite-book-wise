@@ -15,11 +15,18 @@ export default async function handle(
   const data = await prisma.book.findMany({
     include: {
       Review: {
-        select: {
-          score: true,
+        include: {
+          user: true,
+        },
+        orderBy: {
+          created_at: 'desc',
         },
       },
-      BookCategory: true,
+      BookCategory: {
+        include: {
+          category: true,
+        },
+      },
     },
     where: {
       BookCategory: {
@@ -31,6 +38,7 @@ export default async function handle(
   })
 
   const result = data.map((book) => {
+    const categories = book.BookCategory.map((category) => category.category)
     const reviewCount = book.Review.length
     const reviewSumScore = book.Review.reduce(
       (sum, review) => sum + parseInt(review.score),
@@ -42,6 +50,8 @@ export default async function handle(
     return {
       ...book,
       imageUrl: book.image_url,
+      categories,
+      reviews: book.Review,
       reviewCount,
       reviewSumScore,
       reviewScore,

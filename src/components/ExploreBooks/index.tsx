@@ -1,23 +1,28 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react'
-import Image from 'next/image'
 import { api } from '@/lib/axios'
 
 import { Button, Text, TextInput } from '@tucupi-ui/react'
 
-import Score from '../Score'
+import { Container, ButtonContent, BooksContent } from './styles'
+import { BookDialog } from '../BookDialog'
 
-import {
-  Container,
-  ButtonContent,
-  BooksContent,
-  ReviewBox,
-  BookInfo,
-  BookName,
-} from './styles'
+interface User {
+  id: string
+  name: string
+  image: string
+}
 
 interface Category {
   id: string
   name: string
+}
+
+interface Review {
+  id: string
+  score: number
+  description: string
+  created_at: string
+  user: User
 }
 
 interface Book {
@@ -26,8 +31,11 @@ interface Book {
   author: string
   description: string
   imageUrl: string
+  categories: Category[]
+  reviews: Review[]
   reviewScore: number
   reviewCount: number
+  pages: number
 }
 
 export function ExploreBooks() {
@@ -106,24 +114,7 @@ export function ExploreBooks() {
       </ButtonContent>
       <BooksContent>
         {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => (
-            <ReviewBox key={book.id}>
-              <Image src={book.imageUrl} height={152} width={108} alt="" />
-              <BookInfo>
-                <BookName>
-                  <Text as="strong">{book.title}</Text>
-                  <Text as="span" size="sm">
-                    {book.author}
-                  </Text>
-                </BookName>
-                {book.reviewCount > 0 ? (
-                  <Score score={book.reviewScore} />
-                ) : (
-                  <Text sizw="sm">Sem avaliação!</Text>
-                )}
-              </BookInfo>
-            </ReviewBox>
-          ))
+          filteredBooks.map((book) => <BookDialog book={book} key={book.id} />)
         ) : (
           <Text size="sm">Nenhum livro cadastrado!</Text>
         )}
