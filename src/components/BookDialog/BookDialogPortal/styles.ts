@@ -1,4 +1,4 @@
-import { Box, styled } from '@tucupi-ui/react'
+import { Box, Text, styled } from '@tucupi-ui/react'
 import * as Dialog from '@radix-ui/react-dialog'
 
 export const Overlay = styled(Dialog.Overlay, {
@@ -46,6 +46,10 @@ export const CloseButton = styled(Dialog.Close, {
   lineHeight: 0,
   cursor: 'pointer',
   color: '$gray3',
+})
+
+export const TextTitle = styled(Text, {
+  marginTop: '$5',
 })
 
 export const BookInfoBox = styled(Box, {
@@ -142,4 +146,10 @@ export const OtherInfoReviewer = styled('div', {
   '> time': {
     color: '$gray400',
   },
+})
+
+export const AddReviewButton = styled('button', {
+  all: 'unset',
+  cursor: 'pointer',
+  color: '$purple300',
 })

@@ -8,6 +8,7 @@ import { Avatar, Text } from '@tucupi-ui/react'
 import Score from '@/components/Score'
 
 import {
+  AddReviewButton,
   BookCategoryPages,
   BookInfo,
   BookInfoBox,
@@ -26,6 +27,9 @@ import {
   ScoreContainer,
 } from './styles'
 import { formatDate, getTimeDistanceToNow } from '@/utils/date'
+import { ReviewForm } from '@/components/ReviewForm'
+import { useSession } from 'next-auth/react'
+import { LoginDialog } from '@/components/LoginDialog'
 
 interface User {
   id: string
@@ -63,6 +67,8 @@ interface BookDialogProps {
 
 export function BookDialogPortal({ book }: BookDialogProps) {
   console.log('Book PORTAL ', book)
+  const { data: session, status } = useSession()
+  const isLogged = session
 
   return (
     <Dialog.Portal>
@@ -127,8 +133,13 @@ export function BookDialogPortal({ book }: BookDialogProps) {
               <Text as="span" size="sm">
                 Avaliações
               </Text>
-              <Text>Avaliar</Text>
+              <LoginDialog>
+                <AddReviewButton onClick={() => console.log('clicou')}>
+                  Avaliar
+                </AddReviewButton>
+              </LoginDialog>
             </ReviewsTitle>
+            <ReviewForm />
             {book.reviews.map((review) => {
               const reviewedAtDate = new Date(review.created_at)
               return (
