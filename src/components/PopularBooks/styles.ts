@@ -1,3 +1,4 @@
+import Rating from '@mui/material/Rating'
 import { Box, styled } from '@tucupi-ui/react'
 
 export const Container = styled('div', {

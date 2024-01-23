@@ -1,5 +1,6 @@
 import { Box, Text, styled } from '@tucupi-ui/react'
 import * as Dialog from '@radix-ui/react-dialog'
+import { Rating } from '@mui/material'
 
 export const Overlay = styled(Dialog.Overlay, {
   position: 'fixed',

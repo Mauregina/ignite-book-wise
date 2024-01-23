@@ -50,7 +50,6 @@ export function PopularBooks() {
                     {item.author}
                   </Text>
                 </BookName>
-
                 <Score score={item.reviewScore} />
               </BookInfo>
             </BookBox>

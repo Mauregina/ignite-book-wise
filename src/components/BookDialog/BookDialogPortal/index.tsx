@@ -30,6 +30,7 @@ import { formatDate, getTimeDistanceToNow } from '@/utils/date'
 import { ReviewForm } from '@/components/ReviewForm'
 import { useSession } from 'next-auth/react'
 import { LoginDialog } from '@/components/LoginDialog'
+import { Fragment, useState } from 'react'
 
 interface User {
   id: string
@@ -69,6 +70,13 @@ export function BookDialogPortal({ book }: BookDialogProps) {
   console.log('Book PORTAL ', book)
   const { data: session, status } = useSession()
   const isLogged = session
+  const [showForm, setShowForm] = useState(false)
+
+  const ReviewActionWrapper = isLogged ? Fragment : LoginDialog
+
+  function handleClickReview() {
+    setShowForm(true)
+  }
 
   return (
     <Dialog.Portal>
@@ -133,13 +141,13 @@ export function BookDialogPortal({ book }: BookDialogProps) {
               <Text as="span" size="sm">
                 Avaliações
               </Text>
-              <LoginDialog>
-                <AddReviewButton onClick={() => console.log('clicou')}>
+              <ReviewActionWrapper>
+                <AddReviewButton onClick={handleClickReview}>
                   Avaliar
                 </AddReviewButton>
-              </LoginDialog>
+              </ReviewActionWrapper>
             </ReviewsTitle>
-            <ReviewForm />
+            {showForm && <ReviewForm />}
             {book.reviews.map((review) => {
               const reviewedAtDate = new Date(review.created_at)
               return (

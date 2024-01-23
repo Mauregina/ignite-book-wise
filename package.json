@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.0.8",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.6",
     "@prisma/client": "^5.6.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@tucupi-ui/react": "^4.1.0",

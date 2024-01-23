@@ -6,12 +6,17 @@ import { Text, Button } from '@tucupi-ui/react'
 
 import { CloseButton, ConnectContainer, DialogContent, Overlay } from './styles'
 import { TextTitle } from '../BookDialog/BookDialogPortal/styles'
+import { signIn } from 'next-auth/react'
 
 interface LoginDialogProps {
   children: ReactNode
 }
 
 export function LoginDialog({ children }: LoginDialogProps) {
+  function handleSignIn(provider: string) {
+    signIn(provider, { callbackUrl: '/explore' })
+  }
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -23,7 +28,7 @@ export function LoginDialog({ children }: LoginDialogProps) {
           </CloseButton>
           <TextTitle>Faça login para deixar sua avaliação</TextTitle>
           <ConnectContainer>
-            <Button onClick={() => console.log('google')}>
+            <Button onClick={() => handleSignIn('google')}>
               <GoogleLogo />
               Entrar com Google
             </Button>

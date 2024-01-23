@@ -1,6 +1,11 @@
+import { Rating } from '@mui/material'
 import { styled } from '@tucupi-ui/react'
 
-export const Container = styled('div', {
-  display: 'flex',
-  gap: '$1',
+export const StyledRating = styled(Rating, {
+  '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
+    color: '$purple300',
+  },
+  '& .MuiRating-iconFilled': {
+    color: '$purple300',
+  },
 })

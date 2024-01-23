@@ -38,6 +38,14 @@ export default async function handle(
   })
 
   const result = data.map((book) => {
+    const customRound = (value: number) => {
+      if (value < 1.5) {
+        return Math.floor(value)
+      } else {
+        return Math.round(value * 2) / 2
+      }
+    }
+
     const categories = book.BookCategory.map((category) => category.category)
     const reviewCount = book.Review.length
     const reviewSumScore = book.Review.reduce(
@@ -45,7 +53,7 @@ export default async function handle(
       0,
     )
     const reviewScoreAverage = reviewSumScore / reviewCount
-    const reviewScore = Math.round(reviewScoreAverage)
+    const reviewScore = customRound(reviewScoreAverage)
 
     return {
       ...book,
