@@ -67,8 +67,7 @@ interface BookDialogProps {
 }
 
 export function BookDialogPortal({ book }: BookDialogProps) {
-  console.log('Book PORTAL ', book)
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
   const isLogged = session
   const [showForm, setShowForm] = useState(false)
 
@@ -76,6 +75,10 @@ export function BookDialogPortal({ book }: BookDialogProps) {
 
   function handleClickReview() {
     setShowForm(true)
+  }
+
+  function handleCloseFormReview() {
+    setShowForm(false)
   }
 
   return (
@@ -147,7 +150,9 @@ export function BookDialogPortal({ book }: BookDialogProps) {
                 </AddReviewButton>
               </ReviewActionWrapper>
             </ReviewsTitle>
-            {showForm && <ReviewForm />}
+            {showForm && (
+              <ReviewForm onCloseFormReview={handleCloseFormReview} />
+            )}
             {book.reviews.map((review) => {
               const reviewedAtDate = new Date(review.created_at)
               return (

@@ -19,6 +19,16 @@ export const Reviewer = styled('div', {
   gap: '$3',
 })
 
+export const DescriptionContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$1',
+
+  '> p': {
+    color: '#F75A68',
+  },
+})
+
 export const StyledRating = styled(Rating, {
   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
     color: '$purple300',

@@ -68,8 +68,6 @@ export function LastBookRead() {
     loadInfo()
   }, [loadInfo])
 
-  console.log(review)
-
   return (
     <Container>
       <Text size={'sm'} as="strong">
