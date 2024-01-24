@@ -151,7 +151,10 @@ export function BookDialogPortal({ book }: BookDialogProps) {
               </ReviewActionWrapper>
             </ReviewsTitle>
             {showForm && (
-              <ReviewForm onCloseFormReview={handleCloseFormReview} />
+              <ReviewForm
+                bookId={book.id}
+                onCloseFormReview={handleCloseFormReview}
+              />
             )}
             {book.reviews.map((review) => {
               const reviewedAtDate = new Date(review.created_at)

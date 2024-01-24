@@ -12,13 +12,20 @@ import {
   Actions,
   DescriptionContainer,
 } from './styles'
+import { api } from '@/lib/axios'
 
 interface ReviewFormProps {
+  bookId: string
   onCloseFormReview: () => void
 }
 
-export function ReviewForm({ onCloseFormReview }: ReviewFormProps) {
+interface AuthUser {
+  id: string
+}
+
+export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
   const session = useSession()
+  const userId = (session?.data?.user as AuthUser).id
   const { data } = session
   const [score, setScore] = useState(0)
   const [description, setDescription] = useState('')
@@ -30,15 +37,22 @@ export function ReviewForm({ onCloseFormReview }: ReviewFormProps) {
     setScore(value)
   }
 
-  const handleSubmitReview = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmitReview = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(score)
-    console.log(description)
     if (description === '') {
       setError('Descrição é obrigatória')
+      return
     } else {
       setError('')
     }
+
+    await api.post(`users/${userId}/review`, {
+      score,
+      description,
+      bookId,
+    })
+
+    onCloseFormReview()
   }
 
   return (
