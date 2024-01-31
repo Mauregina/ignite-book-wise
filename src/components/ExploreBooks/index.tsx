@@ -80,7 +80,6 @@ export function ExploreBooks() {
   }, [])
 
   const loadInfo = useCallback(async () => {
-    console.log('ATUALIZA')
     const response = await api.get('books', {
       params: {
         category: categorySelected,

@@ -84,7 +84,7 @@ export function ProfileInfo() {
           <UserList size={32} />
           <ProfileResumeInfo>
             <Text as="strong">{report?.authorsRead}</Text>
-            <Text size="sm">Autores lidoss</Text>
+            <Text size="sm">Autores lidos</Text>
           </ProfileResumeInfo>
         </ProfileResumeContent>
         <ProfileResumeContent>

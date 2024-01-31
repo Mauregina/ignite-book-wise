@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { GithubLogo, GoogleLogo, X } from 'phosphor-react'
 import { ReactNode } from 'react'
 
-import { Text, Button } from '@tucupi-ui/react'
+import { Button } from '@tucupi-ui/react'
 
 import { CloseButton, ConnectContainer, DialogContent, Overlay } from './styles'
 import { TextTitle } from '../BookDialog/BookDialogPortal/styles'

@@ -74,12 +74,17 @@ export function BookDialogPortal({ book }: BookDialogProps) {
   const ReviewActionWrapper = isLogged ? Fragment : LoginDialog
 
   function handleClickReview() {
-    setShowForm(true)
+    if (isLogged) {
+      setShowForm(true)
+    }
   }
 
   function handleCloseFormReview() {
     setShowForm(false)
   }
+
+  console.log(isLogged)
+  console.log(ReviewActionWrapper)
 
   return (
     <Dialog.Portal>
