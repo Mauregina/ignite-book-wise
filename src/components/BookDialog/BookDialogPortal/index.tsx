@@ -138,25 +138,26 @@ export function BookDialogPortal({ book }: BookDialogProps) {
             </CategoryPages>
           </BookCategoryPages>
         </BookInfoBox>
-        {book.reviewCount > 0 && (
-          <>
-            <ReviewsTitle>
-              <Text as="span" size="sm">
-                Avaliações
-              </Text>
-              <ReviewActionWrapper>
-                <AddReviewButton onClick={handleClickReview}>
-                  Avaliar
-                </AddReviewButton>
-              </ReviewActionWrapper>
-            </ReviewsTitle>
-            {showForm && (
-              <ReviewForm
-                bookId={book.id}
-                onCloseFormReview={handleCloseFormReview}
-              />
-            )}
-            {book.reviews.map((review) => {
+
+        <>
+          <ReviewsTitle>
+            <Text as="span" size="sm">
+              Avaliações
+            </Text>
+            <ReviewActionWrapper>
+              <AddReviewButton onClick={handleClickReview}>
+                Avaliar
+              </AddReviewButton>
+            </ReviewActionWrapper>
+          </ReviewsTitle>
+          {showForm && (
+            <ReviewForm
+              bookId={book.id}
+              onCloseFormReview={handleCloseFormReview}
+            />
+          )}
+          {book.reviewCount > 0 ? (
+            book.reviews.map((review) => {
               const reviewedAtDate = new Date(review.created_at)
               return (
                 <ReviewBox key={review.id}>
@@ -180,9 +181,11 @@ export function BookDialogPortal({ book }: BookDialogProps) {
                   <Text size="sm">{review.description}</Text>
                 </ReviewBox>
               )
-            })}
-          </>
-        )}
+            })
+          ) : (
+            <ReviewBox>Sem avaliação!</ReviewBox>
+          )}
+        </>
       </DialogContent>
     </Dialog.Portal>
   )

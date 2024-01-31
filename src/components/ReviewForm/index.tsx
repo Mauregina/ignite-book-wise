@@ -1,5 +1,11 @@
 import { useSession } from 'next-auth/react'
-import { ChangeEvent, FormEvent, SetStateAction, useState } from 'react'
+import {
+  ChangeEvent,
+  FormEvent,
+  SetStateAction,
+  useContext,
+  useState,
+} from 'react'
 import { X, Check } from 'phosphor-react'
 
 import { Avatar, TextArea, Text, Button } from '@tucupi-ui/react'
@@ -13,6 +19,7 @@ import {
   DescriptionContainer,
 } from './styles'
 import { api } from '@/lib/axios'
+import { BookContext } from '../ExploreBooks'
 
 interface ReviewFormProps {
   bookId: string
@@ -30,6 +37,8 @@ export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
   const [score, setScore] = useState(0)
   const [description, setDescription] = useState('')
   const [error, setError] = useState('')
+
+  const { handleUpdateBooks } = useContext(BookContext)
 
   const handleChangeScore = (newValue: number) => {
     if (newValue === null) newValue = 0
@@ -51,7 +60,7 @@ export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
       description,
       bookId,
     })
-
+    handleUpdateBooks()
     onCloseFormReview()
   }
 

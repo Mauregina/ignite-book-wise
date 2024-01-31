@@ -1,4 +1,10 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import {
+  ChangeEvent,
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import { api } from '@/lib/axios'
 
 import { Button, Text, TextInput } from '@tucupi-ui/react'
@@ -38,11 +44,31 @@ interface Book {
   pages: number
 }
 
+interface BookContextType {
+  handleUpdateBooks: () => void
+}
+
+export const BookContext = createContext({} as BookContextType)
+
 export function ExploreBooks() {
   const [books, setBooks] = useState<Book[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [categorySelected, setCategorySelected] = useState('')
   const [filter, setFilter] = useState('')
+
+  const [updateBooks, setUpdateBooks] = useState(false)
+
+  const handleUpdateBooks = () => {
+    setUpdateBooks(true)
+  }
+
+  const handleCategoryClick = (category: string) => {
+    setCategorySelected(category)
+  }
+
+  const handleChangeFilter = (event: ChangeEvent<HTMLInputElement>) => {
+    setFilter(event.target.value)
+  }
 
   const loadCategories = useCallback(async () => {
     const response = await api.get('categories')
@@ -53,11 +79,8 @@ export function ExploreBooks() {
     }
   }, [])
 
-  useEffect(() => {
-    loadCategories()
-  }, [loadCategories])
-
   const loadInfo = useCallback(async () => {
+    console.log('ATUALIZA')
     const response = await api.get('books', {
       params: {
         category: categorySelected,
@@ -67,6 +90,7 @@ export function ExploreBooks() {
     if (response.status === 200) {
       const data = response.data.books
       setBooks(data)
+      setUpdateBooks(false)
     }
   }, [categorySelected])
 
@@ -74,51 +98,46 @@ export function ExploreBooks() {
     loadInfo()
   }, [loadInfo])
 
-  function handleCategoryClick(category: string) {
-    setCategorySelected(category)
-  }
+  useEffect(() => {
+    if (updateBooks) {
+      loadInfo()
+    }
+  }, [loadInfo, updateBooks])
 
-  function handleChangeFilter(event: ChangeEvent<HTMLInputElement>) {
-    setFilter(event.target.value)
-  }
-
-  const filteredBooks =
-    filter === ''
-      ? books
-      : books.filter(
-          (item) =>
-            item.title.toLowerCase().includes(filter.toLowerCase()) ||
-            item.author.toLowerCase().includes(filter.toLowerCase()),
-        )
+  useEffect(() => {
+    loadCategories()
+  }, [loadCategories])
 
   return (
-    <Container>
-      <TextInput
-        placeholder="Buscar livro ou autor"
-        value={filter}
-        onChange={handleChangeFilter}
-      />
-      <ButtonContent>
-        <Button autoFocus onClick={() => handleCategoryClick('')}>
-          Tudo
-        </Button>
-        {categories &&
-          categories.map((category) => (
-            <Button
-              key={category.id}
-              onClick={() => handleCategoryClick(category.id)}
-            >
-              {category.name}
-            </Button>
-          ))}
-      </ButtonContent>
-      <BooksContent>
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => <BookDialog book={book} key={book.id} />)
-        ) : (
-          <Text size="sm">Nenhum livro cadastrado!</Text>
-        )}
-      </BooksContent>
-    </Container>
+    <BookContext.Provider value={{ handleUpdateBooks }}>
+      <Container>
+        <TextInput
+          placeholder="Buscar livro ou autor"
+          value={filter}
+          onChange={handleChangeFilter}
+        />
+        <ButtonContent>
+          <Button autoFocus onClick={() => handleCategoryClick('')}>
+            Tudo
+          </Button>
+          {categories &&
+            categories.map((category) => (
+              <Button
+                key={category.id}
+                onClick={() => handleCategoryClick(category.id)}
+              >
+                {category.name}
+              </Button>
+            ))}
+        </ButtonContent>
+        <BooksContent>
+          {books.length > 0 ? (
+            books.map((book) => <BookDialog book={book} key={book.id} />)
+          ) : (
+            <Text size="sm">Nenhum livro cadastrado!</Text>
+          )}
+        </BooksContent>
+      </Container>
+    </BookContext.Provider>
   )
 }
