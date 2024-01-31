@@ -126,7 +126,7 @@ export function LatestBooksReviewedByUser() {
           ))
         ) : (
           <ReviewBox>
-            <Text size="sm">Nenhum avaliação registrada até o momento!</Text>
+            <Text size="sm">No reviews registered so far!</Text>
           </ReviewBox>
         )}
       </Content>

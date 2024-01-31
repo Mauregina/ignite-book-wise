@@ -60,7 +60,7 @@ export function ProfileInfo() {
             {data?.user?.name}
           </Text>
           <Text as="span" size="sm">
-            Membro desde 2021
+            Member since 2021
           </Text>
         </ContentName>
       </UserContent>
@@ -70,28 +70,28 @@ export function ProfileInfo() {
           <Book size={32} />
           <ProfileResumeInfo>
             <Text as="strong">{report?.pagesRead}</Text>
-            <Text size="sm">Páginas lidas</Text>
+            <Text size="sm">Pages read</Text>
           </ProfileResumeInfo>
         </ProfileResumeContent>
         <ProfileResumeContent>
           <Books size={32} />
           <ProfileResumeInfo>
             <Text as="strong">{report?.booksReviewed}</Text>
-            <Text size="sm">Livros avaliados</Text>
+            <Text size="sm">Books reviewed</Text>
           </ProfileResumeInfo>
         </ProfileResumeContent>
         <ProfileResumeContent>
           <UserList size={32} />
           <ProfileResumeInfo>
             <Text as="strong">{report?.authorsRead}</Text>
-            <Text size="sm">Autores lidos</Text>
+            <Text size="sm">Authors read</Text>
           </ProfileResumeInfo>
         </ProfileResumeContent>
         <ProfileResumeContent>
           <Tag size={32} />
           <ProfileResumeInfo>
             <Text as="strong">{report?.categoriesMostRead.join(', ')}</Text>
-            <Text size="sm">Categoria mais lida</Text>
+            <Text size="sm">Most read category</Text>
           </ProfileResumeInfo>
         </ProfileResumeContent>
       </ReportContent>

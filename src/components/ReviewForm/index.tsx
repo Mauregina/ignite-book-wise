@@ -83,7 +83,7 @@ export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
       </Header>
       <DescriptionContainer>
         <TextArea
-          placeholder="Escreva sua avaliação"
+          placeholder="Add your comment here"
           value={description}
           onChange={(e: any) => setDescription(e.target.value)}
         ></TextArea>

@@ -36,10 +36,10 @@ export function PopularBooks() {
   return (
     <Container>
       <Text size="sm" as="strong">
-        Livros populares
+        Popular books
       </Text>
       <Content>
-        {popularBooks &&
+        {popularBooks.length > 0 ? (
           popularBooks.map((item) => (
             <BookBox key={item.id}>
               <Image src={item.imageUrl} height={94} width={64} alt="" />
@@ -53,7 +53,12 @@ export function PopularBooks() {
                 <Score score={item.reviewScore} />
               </BookInfo>
             </BookBox>
-          ))}
+          ))
+        ) : (
+          <BookBox>
+            <Text size="sm">No reviews registered so far!!</Text>
+          </BookBox>
+        )}
       </Content>
     </Container>
   )

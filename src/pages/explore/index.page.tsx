@@ -11,7 +11,7 @@ const Explore: NextPageWithLayout = () => {
     <Container>
       <Title>
         <Binoculars size={26} color="#8661C1" />
-        <Heading>Explorar</Heading>
+        <Heading>Explore</Heading>
       </Title>
       <ExploreBooks />
     </Container>

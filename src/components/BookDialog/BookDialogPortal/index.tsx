@@ -108,12 +108,12 @@ export function BookDialogPortal({ book }: BookDialogProps) {
                   <Score score={book.reviewScore} />
                   <Text>
                     {`${book.reviewCount} ${
-                      book.reviewCount > 1 ? 'avaliações' : 'avaliação'
+                      book.reviewCount > 1 ? 'reviews' : 'review'
                     }`}
                   </Text>
                 </ScoreContainer>
               ) : (
-                <Text sizw="sm">Sem avaliação!</Text>
+                <Text sizw="sm">No review!</Text>
               )}
             </BookInfo>
           </BookTitleAuthorScore>
@@ -122,7 +122,7 @@ export function BookDialogPortal({ book }: BookDialogProps) {
             <CategoryPages>
               <Book size={24} />
               <div>
-                <Text as="span">Categoria</Text>
+                <Text as="span">Category</Text>
                 <Text as="strong">
                   {book.categories
                     .map(
@@ -137,7 +137,7 @@ export function BookDialogPortal({ book }: BookDialogProps) {
             <CategoryPages>
               <Tag size={24} />
               <div>
-                <Text as="span">Páginas</Text>
+                <Text as="span">Pages</Text>
                 <Text as="strong">{book.pages}</Text>
               </div>
             </CategoryPages>
@@ -147,11 +147,11 @@ export function BookDialogPortal({ book }: BookDialogProps) {
         <>
           <ReviewsTitle>
             <Text as="span" size="sm">
-              Avaliações
+              Reviews
             </Text>
             <ReviewActionWrapper>
               <AddReviewButton onClick={handleClickReview}>
-                Avaliar
+                Add a review
               </AddReviewButton>
             </ReviewActionWrapper>
           </ReviewsTitle>
@@ -188,7 +188,7 @@ export function BookDialogPortal({ book }: BookDialogProps) {
               )
             })
           ) : (
-            <ReviewBox>Sem avaliação!</ReviewBox>
+            <ReviewBox>No review!</ReviewBox>
           )}
         </>
       </DialogContent>

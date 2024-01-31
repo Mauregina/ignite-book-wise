@@ -31,14 +31,14 @@ export default function SideBar() {
     <Container>
       <Image src={logo} height={30} alt="" />
       <NavBar>
-        <Link text="Início" href="/">
+        <Link text="Home" href="/">
           <House size={18} />
         </Link>
-        <Link text="Explorar" href="/explore">
+        <Link text="Explore" href="/explore">
           <Binoculars size={18} />
         </Link>
         {isLogged && (
-          <Link text="Perfil" href="/profile">
+          <Link text="Profile" href="/profile">
             <User size={18} />
           </Link>
         )}

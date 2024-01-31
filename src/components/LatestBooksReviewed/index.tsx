@@ -76,7 +76,7 @@ export function LatestBooksReviewed() {
   return (
     <Container>
       <Text size="sm" as="strong">
-        Avaliações mais recentes
+        Latest books reviewed
       </Text>
       <Content>
         {reviews.length > 0 ? (
@@ -121,7 +121,7 @@ export function LatestBooksReviewed() {
           ))
         ) : (
           <ReviewBox>
-            <Text size="sm">Nenhum avaliação registrada até o momento!</Text>
+            <Text size="sm">No reviews registered so far!</Text>
           </ReviewBox>
         )}
       </Content>

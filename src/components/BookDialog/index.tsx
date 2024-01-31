@@ -60,7 +60,7 @@ export function BookDialog({ book }: BookDialogProps) {
             {book.reviewCount > 0 ? (
               <Score score={book.reviewScore} />
             ) : (
-              <Text sizw="sm">Sem avaliação!</Text>
+              <Text sizw="sm">No review!</Text>
             )}
           </BookInfo>
         </ReviewBox>

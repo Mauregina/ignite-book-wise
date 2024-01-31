@@ -71,7 +71,7 @@ export function LastBookRead() {
   return (
     <Container>
       <Text size={'sm'} as="strong">
-        Sua última leitura
+        Last book read
       </Text>
       {review ? (
         <BookBox>
@@ -106,7 +106,7 @@ export function LastBookRead() {
         </BookBox>
       ) : (
         <BookBox>
-          <Text size="sm">Nenhum livro lido até o momento!</Text>
+          <Text size="sm">No books read so far!</Text>
         </BookBox>
       )}
     </Container>
