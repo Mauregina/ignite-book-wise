@@ -11,6 +11,7 @@ export default async function handle(
   }
 
   const userId = String(req.query.userid)
+  const filter = String(req.query.filter)
 
   const user = await prisma.user.findUnique({
     where: {
@@ -23,14 +24,19 @@ export default async function handle(
   }
 
   const reviews = await prisma.review.findMany({
-    where: {
-      user_id: userId,
-    },
     orderBy: {
       created_at: 'desc',
     },
     include: {
       book: true,
+    },
+    where: {
+      user_id: userId,
+      book: {
+        title: {
+          contains: filter !== '' ? filter : undefined,
+        },
+      },
     },
   })
 

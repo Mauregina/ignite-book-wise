@@ -71,26 +71,34 @@ export function ExploreBooks() {
   }
 
   const loadCategories = useCallback(async () => {
-    const response = await api.get('categories')
+    try {
+      const response = await api.get('categories')
 
-    if (response.status === 200) {
-      const data = response.data.categories
-      setCategories(data)
+      if (response.status === 200) {
+        const data = response.data.categories
+        setCategories(data)
+      }
+    } catch (error) {
+      console.error('Error fetching categories', error)
     }
   }, [])
 
   const loadInfo = useCallback(async () => {
-    const response = await api.get('books', {
-      params: {
-        category: categorySelected,
-        filter,
-      },
-    })
+    try {
+      const response = await api.get('books', {
+        params: {
+          category: categorySelected,
+          filter,
+        },
+      })
 
-    if (response.status === 200) {
-      const data = response.data.books
-      setBooks(data)
-      setUpdateBooks(false)
+      if (response.status === 200) {
+        const data = response.data.books
+        setBooks(data)
+        setUpdateBooks(false)
+      }
+    } catch (error) {
+      console.error('Error fetching books', error)
     }
   }, [categorySelected, filter])
 

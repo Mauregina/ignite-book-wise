@@ -47,7 +47,11 @@ export function LatestBooksReviewedByUser() {
 
   const loadInfo = useCallback(async () => {
     try {
-      const response = await api.get(`users/${userId}/latest-reviews`)
+      const response = await api.get(`users/${userId}/latest-reviews`, {
+        params: {
+          filter,
+        },
+      })
 
       if (response.status === 200) {
         const reviews = response.data.latestReviews
@@ -63,9 +67,9 @@ export function LatestBooksReviewedByUser() {
         setReviews(newReviews)
       }
     } catch (error) {
-      console.error('Error ', error)
+      console.error('Error fetching latest-reviews', error)
     }
-  }, [userId])
+  }, [userId, filter])
 
   useEffect(() => {
     loadInfo()
@@ -74,13 +78,6 @@ export function LatestBooksReviewedByUser() {
   function handleChangeFilter(event: ChangeEvent<HTMLInputElement>) {
     setFilter(event.target.value)
   }
-
-  const filteredReviews =
-    filter === ''
-      ? reviews
-      : reviews.filter((item) =>
-          item.book.title.toLowerCase().includes(filter.toLowerCase()),
-        )
 
   return (
     <Container>
@@ -91,8 +88,8 @@ export function LatestBooksReviewedByUser() {
       />
 
       <Content>
-        {filteredReviews.length > 0 ? (
-          filteredReviews.map((review) => (
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
             <ReviewBox key={review.id}>
               <Text
                 as="time"
