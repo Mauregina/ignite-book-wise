@@ -26,15 +26,15 @@ export function LoginDialog({ children }: LoginDialogProps) {
           <CloseButton>
             <X weight="bold" size={24} />
           </CloseButton>
-          <TextTitle>Faça login para deixar sua avaliação</TextTitle>
+          <TextTitle>Login to leave your review</TextTitle>
           <ConnectContainer>
             <Button onClick={() => handleSignIn('google')}>
               <GoogleLogo />
-              Entrar com Google
+              Login with Google
             </Button>
             <Button>
               <GithubLogo />
-              Entrar com GitHub
+              Login with GitHub
             </Button>
           </ConnectContainer>
         </DialogContent>

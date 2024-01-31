@@ -51,7 +51,7 @@ export default function SideBar() {
         </Footer>
       ) : (
         <Footer>
-          <Text size={'sm'}>Fazer login</Text>
+          <Text size={'sm'}>Login</Text>
           <SignIn size={20} color="blue" onClick={() => handleSignIn()} />
         </Footer>
       )}

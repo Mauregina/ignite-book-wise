@@ -65,7 +65,7 @@ export function LatestBooksReviewed() {
         setReviews(newReviews)
       }
     } catch (error) {
-      console.error('Error ', error)
+      console.error('Error fetching latest-reviews: ', error)
     }
   }, [])
 

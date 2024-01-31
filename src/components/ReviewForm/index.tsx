@@ -64,7 +64,7 @@ export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
       if (error.response.status === 400) {
         setError(error.response.data.message)
       } else {
-        console.error('Error setting up the request:', error)
+        console.error('Error adding review:', error)
       }
     }
   }

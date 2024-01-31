@@ -43,7 +43,7 @@ export function ProfileInfo() {
         setReport(data)
       }
     } catch (error) {
-      console.error('Error ', error)
+      console.error('Error fetching report:', error)
     }
   }, [userId])
 

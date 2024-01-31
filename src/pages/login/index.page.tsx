@@ -35,20 +35,20 @@ export default function Login() {
         />
       </ImageContainer>
       <Hero>
-        <Heading>Boas vindas!</Heading>
-        <Text>Faça seu login ou acesse como visitante.</Text>
+        <Heading>Welcome!</Heading>
+        <Text>Login or access as visitor.</Text>
         <ConnectContainer>
           <Button onClick={() => handleSignIn('google')}>
             <GoogleLogo />
-            Entrar com Google
+            Login with Google
           </Button>
           <Button>
             <GithubLogo />
-            Entrar com GitHub
+            Login with GitHub
           </Button>
           <Button onClick={() => handleSignIn('')}>
             <RocketLaunch />
-            Acessar como visitante
+            Access as visitor
           </Button>
         </ConnectContainer>
       </Hero>

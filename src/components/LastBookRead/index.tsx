@@ -60,7 +60,7 @@ export function LastBookRead() {
         })
       }
     } catch (error) {
-      console.error('Error ', error)
+      console.error('Error fetching last-read: ', error)
     }
   }, [userId])
 
