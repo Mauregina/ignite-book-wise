@@ -97,6 +97,7 @@ export default async function handle(
   )
 
   const report = {
+    memberSince: user.created_at,
     pagesRead,
     booksReviewed,
     authorsRead,

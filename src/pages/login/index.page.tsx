@@ -42,7 +42,7 @@ export default function Login() {
             <GoogleLogo />
             Login with Google
           </Button>
-          <Button>
+          <Button onClick={() => handleSignIn('github')}>
             <GithubLogo />
             Login with GitHub
           </Button>

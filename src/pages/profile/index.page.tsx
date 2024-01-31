@@ -1,6 +1,6 @@
 import { NextPageWithLayout } from '../_app.page'
-import { ReactElement, useEffect } from 'react'
-import { getSession, useSession } from 'next-auth/react'
+import { ReactElement } from 'react'
+import { getSession } from 'next-auth/react'
 
 import { User } from 'phosphor-react'
 import { Heading } from '@tucupi-ui/react'
@@ -10,7 +10,6 @@ import { Container, Content, Title } from './styles'
 
 import { ProfileInfo } from '@/components/ProfileInfo'
 import { LatestBooksReviewedByUser } from '@/components/LatestBooksReviewedByUser'
-import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 
 const Profile: NextPageWithLayout = () => {
@@ -18,7 +17,7 @@ const Profile: NextPageWithLayout = () => {
     <Container>
       <Title>
         <User size={26} color="#8661C1" />
-        <Heading>Perfil</Heading>
+        <Heading>Profile</Heading>
       </Title>
       <Content>
         <LatestBooksReviewedByUser />

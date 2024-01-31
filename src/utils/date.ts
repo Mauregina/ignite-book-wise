@@ -1,4 +1,4 @@
-import { format, formatDistanceToNow } from 'date-fns'
+import { format, formatDistanceToNow, getYear } from 'date-fns'
 import { enUS } from 'date-fns/locale'
 
 export function formatDate(date: Date) {
@@ -12,4 +12,8 @@ export function getTimeDistanceToNow(date: Date) {
     locale: enUS,
     addSuffix: true,
   })
+}
+
+export function getYearFromDate(date: Date) {
+  return getYear(date)
 }
