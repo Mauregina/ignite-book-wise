@@ -33,6 +33,17 @@ export default async function handle(
 
   const scoreStr = score.toString()
 
+  const userAlreadyReviedBook = await prisma.review.findFirst({
+    where: {
+      book_id: bookId,
+      user_id: user.id,
+    },
+  })
+
+  if (userAlreadyReviedBook) {
+    return res.status(400).json({ message: 'User already reviewed this book.' })
+  }
+
   await prisma.review.create({
     data: {
       score: scoreStr,

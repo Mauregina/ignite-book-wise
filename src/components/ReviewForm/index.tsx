@@ -1,11 +1,5 @@
 import { useSession } from 'next-auth/react'
-import {
-  ChangeEvent,
-  FormEvent,
-  SetStateAction,
-  useContext,
-  useState,
-} from 'react'
+import { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import { X, Check } from 'phosphor-react'
 
 import { Avatar, TextArea, Text, Button } from '@tucupi-ui/react'
@@ -49,19 +43,30 @@ export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
   const handleSubmitReview = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (description === '') {
-      setError('Descrição é obrigatória')
+      setError('Description is required')
       return
     } else {
       setError('')
     }
 
-    await api.post(`users/${userId}/review`, {
-      score,
-      description,
-      bookId,
-    })
-    handleUpdateBooks()
-    onCloseFormReview()
+    try {
+      const response = await api.post(`users/${userId}/review`, {
+        score,
+        description,
+        bookId,
+      })
+
+      if (response.status === 201) {
+        handleUpdateBooks()
+        onCloseFormReview()
+      }
+    } catch (error: any) {
+      if (error.response.status === 400) {
+        setError(error.response.data.message)
+      } else {
+        console.error('Error setting up the request:', error)
+      }
+    }
   }
 
   return (
@@ -76,7 +81,7 @@ export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
           precision={0.5}
           value={score}
           defaultValue={0}
-          onChange={(event: any, newValue: number) =>
+          onChange={(e: ChangeEvent<{}>, newValue: number) =>
             handleChangeScore(newValue)
           }
         />
@@ -85,7 +90,9 @@ export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {
         <TextArea
           placeholder="Add your comment here"
           value={description}
-          onChange={(e: any) => setDescription(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setDescription(e.target.value)
+          }
         ></TextArea>
         {error && (
           <Text as="p" size="sm">

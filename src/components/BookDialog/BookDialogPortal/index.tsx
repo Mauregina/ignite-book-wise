@@ -83,9 +83,6 @@ export function BookDialogPortal({ book }: BookDialogProps) {
     setShowForm(false)
   }
 
-  console.log(isLogged)
-  console.log(ReviewActionWrapper)
-
   return (
     <Dialog.Portal>
       <Overlay />
