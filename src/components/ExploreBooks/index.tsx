@@ -83,6 +83,7 @@ export function ExploreBooks() {
     const response = await api.get('books', {
       params: {
         category: categorySelected,
+        filter,
       },
     })
 
@@ -91,7 +92,7 @@ export function ExploreBooks() {
       setBooks(data)
       setUpdateBooks(false)
     }
-  }, [categorySelected])
+  }, [categorySelected, filter])
 
   useEffect(() => {
     loadInfo()
@@ -111,13 +112,13 @@ export function ExploreBooks() {
     <BookContext.Provider value={{ handleUpdateBooks }}>
       <Container>
         <TextInput
-          placeholder="Buscar livro ou autor"
+          placeholder="Search book or author"
           value={filter}
           onChange={handleChangeFilter}
         />
         <ButtonContent>
           <Button autoFocus onClick={() => handleCategoryClick('')}>
-            Tudo
+            All
           </Button>
           {categories &&
             categories.map((category) => (

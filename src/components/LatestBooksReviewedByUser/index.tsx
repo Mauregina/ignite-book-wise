@@ -85,7 +85,7 @@ export function LatestBooksReviewedByUser() {
   return (
     <Container>
       <TextInput
-        placeholder="Buscar livro avaliado"
+        placeholder="Search book"
         value={filter}
         onChange={handleChangeFilter}
       />

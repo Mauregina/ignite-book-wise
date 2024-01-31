@@ -11,6 +11,7 @@ export default async function handle(
   }
 
   const categoryId = String(req.query.category)
+  const filter = String(req.query.filter)
 
   const data = await prisma.book.findMany({
     include: {
@@ -34,6 +35,22 @@ export default async function handle(
           category_id: categoryId !== '' ? categoryId : undefined,
         },
       },
+      AND: [
+        {
+          OR: [
+            {
+              title: {
+                contains: filter !== '' ? filter : undefined,
+              },
+            },
+            {
+              author: {
+                contains: filter !== '' ? filter : undefined,
+              },
+            },
+          ],
+        },
+      ],
     },
   })
 
