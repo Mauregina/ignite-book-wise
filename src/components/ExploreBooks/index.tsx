@@ -9,7 +9,7 @@ import { api } from '@/lib/axios'
 
 import { Button, Text, TextInput } from '@tucupi-ui/react'
 
-import { Container, ButtonContent, BooksContent } from './styles'
+import { Container, ButtonContent, BooksContent, StyledButton } from './styles'
 import { BookDialog } from '../BookDialog'
 
 interface User {
@@ -125,24 +125,30 @@ export function ExploreBooks() {
           onChange={handleChangeFilter}
         />
         <ButtonContent>
-          <Button autoFocus onClick={() => handleCategoryClick('')}>
+          <Button
+            autoFocus
+            variant="secondary"
+            onClick={() => handleCategoryClick('')}
+          >
             All
           </Button>
           {categories &&
             categories.map((category) => (
-              <Button
+              <StyledButton
+                active={category.id === categorySelected}
                 key={category.id}
+                variant="secondary"
                 onClick={() => handleCategoryClick(category.id)}
               >
                 {category.name}
-              </Button>
+              </StyledButton>
             ))}
         </ButtonContent>
         <BooksContent>
           {books.length > 0 ? (
             books.map((book) => <BookDialog book={book} key={book.id} />)
           ) : (
-            <Text size="sm">Nenhum livro cadastrado!</Text>
+            <Text size="sm">No books registered in this category!</Text>
           )}
         </BooksContent>
       </Container>

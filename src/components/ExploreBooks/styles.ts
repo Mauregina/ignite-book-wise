@@ -1,4 +1,4 @@
-import { Box, styled } from '@tucupi-ui/react'
+import { styled, Button } from '@tucupi-ui/react'
 
 export const Container = styled('section', {
   display: 'flex',
@@ -8,12 +8,23 @@ export const Container = styled('section', {
 
 export const ButtonContent = styled('div', {
   display: 'grid',
-  gridTemplateColumns: 'repeat(6, 1fr)',
-  gap: '$3',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+  gridColumnGap: '$1',
+  gridRowGap: '$1',
 
   '> button': {
-    borderRadius: '$full',
-    maxWidth: 120,
+    width: '100%',
+  },
+})
+
+export const StyledButton = styled(Button, {
+  variants: {
+    active: {
+      true: {
+        color: '$white',
+        background: '$purple300',
+      },
+    },
   },
 })
 

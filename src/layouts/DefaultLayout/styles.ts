@@ -25,4 +25,9 @@ export const Content = styled('main', {
   '&::-webkit-scrollbar-track': {
     backgroundColor: 'transparent',
   },
+  '@media (hover: hover) and (pointer: fine)': {
+    '&:hover::-webkit-scrollbar-thumb': {
+      backgroundColor: '$purple300',
+    },
+  },
 })
