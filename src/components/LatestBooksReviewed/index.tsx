@@ -19,19 +19,8 @@ import {
   BookInfo,
   BookName,
 } from './styles'
-
-interface User {
-  id: string
-  name: string
-  image: string
-}
-
-interface Book {
-  id: string
-  title: string
-  author: string
-  imageUrl: string
-}
+import { User } from '@/interfaces/User'
+import { Book } from '@/interfaces/Book'
 
 interface LatestBooksReviewed {
   id: string

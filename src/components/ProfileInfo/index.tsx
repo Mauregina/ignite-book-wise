@@ -15,6 +15,7 @@ import {
   ReportContent,
 } from './styles'
 import { getYearFromDate } from '@/utils/date'
+import { AuthUser } from '@/interfaces/AuthUser'
 
 interface Report {
   memberSince: Date
@@ -22,10 +23,6 @@ interface Report {
   booksReviewed: string
   authorsRead: string
   categoriesMostRead: string[]
-}
-
-interface AuthUser {
-  id: string
 }
 
 export function ProfileInfo() {

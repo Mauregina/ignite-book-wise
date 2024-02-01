@@ -7,25 +7,8 @@ import { BookInfo, BookName, ReviewBox } from './styles'
 import Score from '../Score'
 import { useState } from 'react'
 import { BookDialogPortal } from './BookDialogPortal'
-
-interface User {
-  id: string
-  name: string
-  image: string
-}
-
-interface Category {
-  id: string
-  name: string
-}
-
-interface Review {
-  id: string
-  score: number
-  description: string
-  created_at: string
-  user: User
-}
+import { Category } from '@/interfaces/Category'
+import { Review } from '@/interfaces/Review'
 
 interface BookDialogProps {
   book: {

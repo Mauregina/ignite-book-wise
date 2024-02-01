@@ -16,18 +16,9 @@ import {
   Header,
   Descripton,
 } from './styles'
-
-interface User {
-  id: string
-  image: string
-}
-
-interface Book {
-  id: string
-  title: string
-  author: string
-  imageUrl: string
-}
+import { User } from '@/interfaces/User'
+import { Book } from '@/interfaces/Book'
+import { AuthUser } from '@/interfaces/AuthUser'
 
 interface LastBookRead {
   description: string
@@ -35,10 +26,6 @@ interface LastBookRead {
   reviewedAtDate: Date
   book: Book
   user: User
-}
-
-interface AuthUser {
-  id: string
 }
 
 export function LastBookRead() {

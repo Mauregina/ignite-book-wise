@@ -14,14 +14,11 @@ import {
 } from './styles'
 import { api } from '@/lib/axios'
 import { BookContext } from '../ExploreBooks'
+import { AuthUser } from '@/interfaces/AuthUser'
 
 interface ReviewFormProps {
   bookId: string
   onCloseFormReview: () => void
-}
-
-interface AuthUser {
-  id: string
 }
 
 export function ReviewForm({ bookId, onCloseFormReview }: ReviewFormProps) {

@@ -1,5 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import Image from 'next/image'
+import { useSession } from 'next-auth/react'
+import { Fragment, useState } from 'react'
 
 import { Book, Tag, X } from 'phosphor-react'
 
@@ -28,28 +30,10 @@ import {
 } from './styles'
 import { formatDate, getTimeDistanceToNow } from '@/utils/date'
 import { ReviewForm } from '@/components/ReviewForm'
-import { useSession } from 'next-auth/react'
 import { LoginDialog } from '@/components/LoginDialog'
-import { Fragment, useState } from 'react'
 
-interface User {
-  id: string
-  name: string
-  image: string
-}
-
-interface Category {
-  id: string
-  name: string
-}
-
-interface Review {
-  id: string
-  score: number
-  description: string
-  created_at: string
-  user: User
-}
+import { Category } from '@/interfaces/Category'
+import { Review } from '@/interfaces/Review'
 
 interface BookDialogProps {
   book: {

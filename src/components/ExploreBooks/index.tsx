@@ -7,42 +7,12 @@ import {
 } from 'react'
 import { api } from '@/lib/axios'
 
-import { Button, Text, TextInput } from '@tucupi-ui/react'
+import { Text, TextInput } from '@tucupi-ui/react'
 
 import { Container, ButtonContent, BooksContent, StyledButton } from './styles'
 import { BookDialog } from '../BookDialog'
-
-interface User {
-  id: string
-  name: string
-  image: string
-}
-
-interface Category {
-  id: string
-  name: string
-}
-
-interface Review {
-  id: string
-  score: number
-  description: string
-  created_at: string
-  user: User
-}
-
-interface Book {
-  id: string
-  title: string
-  author: string
-  description: string
-  imageUrl: string
-  categories: Category[]
-  reviews: Review[]
-  reviewScore: number
-  reviewCount: number
-  pages: number
-}
+import { Book } from '@/interfaces/Book'
+import { Category } from '@prisma/client'
 
 interface BookContextType {
   handleUpdateBooks: () => void
@@ -125,13 +95,13 @@ export function ExploreBooks() {
           onChange={handleChangeFilter}
         />
         <ButtonContent>
-          <Button
-            autoFocus
+          <StyledButton
+            active={categorySelected === ''}
             variant="secondary"
             onClick={() => handleCategoryClick('')}
           >
             All
-          </Button>
+          </StyledButton>
           {categories &&
             categories.map((category) => (
               <StyledButton

@@ -17,13 +17,8 @@ import {
   BookName,
 } from './styles'
 import { useSession } from 'next-auth/react'
-
-interface Book {
-  id: string
-  title: string
-  author: string
-  imageUrl: string
-}
+import { Book } from '@/interfaces/Book'
+import { AuthUser } from '@/interfaces/AuthUser'
 
 interface LatestBooksReviewed {
   id: string
@@ -32,10 +27,6 @@ interface LatestBooksReviewed {
   createdAt: string
   reviewedAtDate: Date
   book: Book
-}
-
-interface AuthUser {
-  id: string
 }
 
 export function LatestBooksReviewedByUser() {
