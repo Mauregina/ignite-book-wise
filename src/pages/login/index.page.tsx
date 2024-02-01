@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Container, ImageContainer, Hero, ConnectContainer } from './styles'
 
 import logo from '../../assets/logo-login-section.png'
+import { NextSeo } from 'next-seo'
 
 export default function Login() {
   const router = useRouter()
@@ -24,34 +25,38 @@ export default function Login() {
   }
 
   return (
-    <Container>
-      <ImageContainer>
-        <Image
-          src={logo}
-          height={700}
-          alt="Logo da aplicação"
-          quality={100}
-          priority
-        />
-      </ImageContainer>
-      <Hero>
-        <Heading>Welcome!</Heading>
-        <Text>Login or access as visitor.</Text>
-        <ConnectContainer>
-          <Button onClick={() => handleSignIn('google')}>
-            <GoogleLogo />
-            Login with Google
-          </Button>
-          <Button onClick={() => handleSignIn('github')}>
-            <GithubLogo />
-            Login with GitHub
-          </Button>
-          <Button onClick={() => handleSignIn('')}>
-            <RocketLaunch />
-            Access as visitor
-          </Button>
-        </ConnectContainer>
-      </Hero>
-    </Container>
+    <>
+      <NextSeo title="Login to register your reviews | BookWise" noindex />
+
+      <Container>
+        <ImageContainer>
+          <Image
+            src={logo}
+            height={700}
+            alt="Logo da aplicação"
+            quality={100}
+            priority
+          />
+        </ImageContainer>
+        <Hero>
+          <Heading>Welcome!</Heading>
+          <Text>Login or access as visitor.</Text>
+          <ConnectContainer>
+            <Button onClick={() => handleSignIn('google')}>
+              <GoogleLogo />
+              Login with Google
+            </Button>
+            <Button onClick={() => handleSignIn('github')}>
+              <GithubLogo />
+              Login with GitHub
+            </Button>
+            <Button onClick={() => handleSignIn('')}>
+              <RocketLaunch />
+              Access as visitor
+            </Button>
+          </ConnectContainer>
+        </Hero>
+      </Container>
+    </>
   )
 }

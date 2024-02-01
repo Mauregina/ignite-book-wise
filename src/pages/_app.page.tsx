@@ -4,6 +4,7 @@ import { ReactElement, ReactNode } from 'react'
 import { SessionProvider } from 'next-auth/react'
 
 import { globalStyles } from '@/styles/global'
+import { DefaultSeo } from 'next-seo'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -24,6 +25,14 @@ export default function App({
 
   return (
     <SessionProvider session={session}>
+      <DefaultSeo
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://ignite-book-wise.com.br',
+          siteName: 'IgniteBookWise',
+        }}
+      />
       {getLayout(<Component {...pageProps} />)}
     </SessionProvider>
   )
